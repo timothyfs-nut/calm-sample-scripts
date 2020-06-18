@@ -1,0 +1,23 @@
+## Calm Cloud-init Guest Customisation
+
+#cloud-config
+users:
+  - name: centos
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+chpasswd:
+  list: |
+    centos:@@{PASSWORD}@@
+  expire: False
+ssh_pwauth: True
+
+
+## Add Credentials in to cloud-init and add Credentials in to Calm BP
+#cloud-config
+users:
+  - name: @@{CRED_CENTOS.username}@@
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+chpasswd:
+  list: |
+    @@{CRED_CENTOS.username}@@:@@{CRED_CENTOS.secret}@@
+  expire: False
+ssh_pwauth: True

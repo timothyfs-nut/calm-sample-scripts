@@ -1,0 +1,12 @@
+#Install_IIS
+
+Install-WindowsFeature -name Web-Server -IncludeManagementTools
+
+#Check IIS Install
+
+if ((Get-WindowsFeature Web-Server).InstallState -eq "Installed") {
+    Write-Host "IIS is installed on $vm"
+} 
+else {
+    Write-Host "IIS is not installed on $vm"
+}

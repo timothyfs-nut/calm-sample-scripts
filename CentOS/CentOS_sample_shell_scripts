@@ -1,0 +1,21 @@
+#UpdateOS
+sudo yum update -y
+
+#InstallApachePHP
+sudo yum install -y httpd php
+sudo systemctl enable httpd.service
+sudo systemctl start httpd.service
+
+#CreatePHPPage
+#Be aware a variable, PHP_CODE, needs to exist
+@@{PHP_CODE}@@ ' | sudo tee /var/www/html/index.php
+
+## NOTE PHP Variable in BP:
+## PHP_CODE
+## Multi line String
+## <?php phpinfo(); ?>
+## X
+## Simple
+## Mandatory
+
+

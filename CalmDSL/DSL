@@ -1,0 +1,65 @@
+##dsl
+
+## Run Docker and point to file with saved details to connect DSL to Cluster
+cd basic_blueprint
+## -it allows command line for docker
+
+docker run -it -v $PWD:/root/blueprint -v ~/.calm:/root/.calm ntnx/calm-dsl
+
+## Get Calm Server Status
+calm get server status
+
+##Change cluster
+calm init dsl
+
+##Test BP
+calm compile bp --file lamp.py
+calm compile bp --file CentOS.py
+
+##Create BP
+calm create bp --file CentOS.py --name TS-CentOSCalmDSL
+calm create bp --file lamp.py --name TS-LampCalmDSL
+
+##List BPs
+calm get bps
+
+## Launch Calm BP with App name
+calm launch bp TS-CentOSCalmDSL --app_name TS-DSL_CentOS
+
+## Get app status help
+calm get apps --help
+
+## Get the status of the app launched
+calm get apps --name TS-DSL_CentOS
+
+##Delete the App
+calm delete app TS-DSL_CentOS
+
+##Calm commands
+calm 
+ approve     Approve blueprints in marketplace manager
+  clear       Clear the data stored in local db: cache, secrets etc.
+  compile     Compile blueprint to json / yaml
+  completion  Shell completion for click-completion-command Available shell...
+  create      Create entities in Calm (blueprint, project)
+  delete      Delete entities
+  describe    Describe apps, blueprints, projects, accounts
+  download    Download entities
+  format      Format blueprint using black
+  get         Get various things like blueprints, apps: `get apps` and `get...
+  init        Initializes the dsl for basic configs and bp directory etc.
+  launch      Launch blueprints to create Apps
+  prompt      Enable an interactive prompt shell > :help REPL help:
+              External...
+  publish     Publish blueprints to marketplace
+  reject      Reject blueprints from marketplace manager
+  restart     Restart entities
+  run         Run actions in an app
+  set         Sets the entities
+  show        Shows the cached data(Dynamic data) etc.
+  start       Start entities
+  stop        Stop entities
+  unpublish   Unpublish blueprints from marketplace
+  update      Update entities
+  validate    Validate provider specs
+  watch       Track actions running on apps
